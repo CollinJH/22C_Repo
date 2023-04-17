@@ -8,13 +8,20 @@
 public class Rational
 {
     // PUT PRIVATE DATA FIELDS HERE
+    
+    private int numerator;
+    private int denominator;
 
     /**
      * The default constructor for objects of class Rational.  Creates the rational number 1.
      */
     public Rational()
     {       
-        // ADD CODE TO THE CONSTRUCTOR
+ 
+        // Creates the rational number 1 
+        // for numerator and denominator
+        numerator = 1;
+        denominator = 1;
     }
 
     /**
@@ -24,7 +31,22 @@ public class Rational
      */    
     public Rational(int n, int d)
     {
-        // ADD CODE TO THE ALTERNATE CONSTRUCTOR
+        // Pre-Condition: check if the denominator is non-zero
+        // if the denominator is non-zero throw error
+        if (d == 0) {
+            throw new ZeroDenominatorException("Denominator is set to 0, not a rational number ");
+        }
+
+        // construct rational number n/d
+        // Setting the instance variables to their respective arguments
+        numerator = n;
+        denominator = d;
+
+        // normalize the rational number using normalize method
+        normalize();
+        
+
+
     }
     
     /**
@@ -34,8 +56,8 @@ public class Rational
      */
     public int getNumerator()
     {
-        // CHANGE THE RETURN TO SOMETHING APPROPRIATE
-        return 0;
+        // returns numerator
+        return numerator;
     }
     
     /**
@@ -45,8 +67,8 @@ public class Rational
      */
     public int getDenominator()
     {
-        // CHANGE THE RETURN TO SOMETHING APPROPRIATE
-        return 0;
+        // returns denomatinor
+        return denominator;
     }
 
 
@@ -57,8 +79,10 @@ public class Rational
      */    
     public Rational negate()
     {               
-        // CHANGE THE RETURN TO SOMETHING APPROPRIATE
-        return null;
+        // new instantiates the class, allocating memory for a new object
+        // returns new object reference to that memory
+        // multiplying the numerator by (-1) to set to negative
+        return new Rational((-1) * numerator, denominator);
     }
 
 
@@ -69,8 +93,27 @@ public class Rational
      */    
     public Rational invert()
     {               
-        // CHANGE THE RETURN TO SOMETHING APPROPRIATE
-        return null;
+        // check if numerator is 0
+        // 0 in numerator cannot be swapped to denominator
+        if (numerator == 0) {
+            throw new ZeroDenominatorException("Cannot move 0 from numerator to denominator, result would be undefined");
+        }
+
+        // invert into new placeholder variables
+        int placeNum = denominator;
+        int placeDenom = numerator;
+
+        // if the denomatinor is negative it needs to be moved to the numerator
+        if (placeDenom < 0) {
+            placeNum *= (-1);
+            placeDenom *= (-1);
+        }
+
+        
+
+        // instanciating a new class to allocate memory for a object reference
+        // returns denominator and numerator switched
+        return new Rational(placeNum, placeDenom);
     }
 
 
@@ -85,8 +128,14 @@ public class Rational
      */    
     public Rational add(Rational other)
     {       
-        // ADD NEW CODE AND CHANGE THE RETURN TO SOMETHING APPROPRIATE
-        return null;
+        // a new rational is passed in as an argument
+        // add together numerator/denominator + other.getNumerator(), other.getDenominator
+        Rational addedRational = new Rational((numerator * (other.getDenominator()) + (other.getNumerator() * denominator)), denominator * other.getDenominator());
+
+        // normalize to simplify
+        addedRational.normalize();
+
+        return addedRational;
     }
     
      /**
@@ -97,8 +146,12 @@ public class Rational
      */    
     public Rational subtract(Rational other)
     {               
-        // CHANGE THE RETURN TO SOMETHING APPROPRIATE
-        return null;
+        Rational subRational = new Rational((numerator * (other.getDenominator()) - (other.getNumerator() * denominator)), denominator * other.getDenominator());
+
+        // normalize to simplify
+        subRational.normalize();
+
+        return subRational;
     }
 
     /**
@@ -109,8 +162,15 @@ public class Rational
      */    
     public Rational multiply(Rational other)
     {       
-        // ADD NEW CODE AND CHANGE THE RETURN TO SOMETHING APPROPRIATE
-        return null;
+
+        // multiply the two fractions together
+        Rational muRational = new Rational(numerator * other.getNumerator(), denominator * other.getDenominator());
+
+        // normalize
+        muRational.normalize();
+
+        // return computed rational
+        return muRational;
     }
         
  
@@ -122,8 +182,17 @@ public class Rational
      */    
     public Rational divide(Rational other)
     {               
-        // CHANGE THE RETURN TO SOMETHING APPROPRIATE
-        return null;
+        // dividing will just be multiplying by the reciprocol
+        Rational invertedOther = other.invert();
+
+        // multiply together
+        Rational divRational = new Rational(numerator * invertedOther.getNumerator(), denominator * invertedOther.getDenominator());
+
+        // simplify
+        divRational.normalize();
+
+        // return computed rational
+        return divRational;
     }
      
  
@@ -136,7 +205,17 @@ public class Rational
      */
     private void normalize()
     {
-        // ADD CODE TO NORMALIZE THE RATIONAL NUMBER
+        // get negative value of denominator into numerator
+        if (denominator < 0) {
+            denominator *= (-1);
+            numerator *= (-1);
+        }
+
+        // finding the greatest common factor of the numerator/denominator
+        int result = gcd(Math.abs(numerator),Math.abs(denominator));
+
+        numerator /= result;
+        denominator /= result;
     }
     
     /**
