@@ -9,14 +9,23 @@
 public class Counter
 {
     // PUT PRIVATE DATA FIELDS HERE
+    private final int minValue;
+    private final int maxValue;
 
+    private int counter;
+    private boolean rolledOver;
     /**
      * The default constructor for objects of class Counter.  Minimum is 0 and the maximum
      * is the largest possible integer.
      */
     public Counter()
     {
-        // ADD CODE FOR THE CONSTRUCTOR
+        // set min and max values
+        minValue = 0;
+        maxValue = Integer.MAX_VALUE;
+
+        // initalize counter value
+        counter = 0;
     }
     
     
@@ -28,7 +37,24 @@ public class Counter
      * */
     public Counter(int min, int max)
     {
-        // ADD CODE FOR THE ALTERNATE CONSTRUCTOR
+        // assign instance variables to arguments using this
+        this.minValue = min;
+        this.maxValue = max;
+
+        // set counter equal to min
+        this.counter = min;
+
+        // program has not rolled over
+        this.rolledOver = false;
+
+        // exception handling checking cases
+        // min cannot be greater than max
+        // min and max cannot be equal
+        if (min > max) {
+            throw new CounterInitializationException("Exception Thrown, max value cannot be less than min value");
+        } else if (min == max) {
+            throw new CounterInitializationException("Exception Thrown, min and max cannot be equal");
+        }
     }
     
     /**
@@ -40,9 +66,15 @@ public class Counter
     public boolean equals(Object otherObject)
     {
         boolean result = true;
-        if (otherObject instanceof Counter)
+
+        // if is an instance of counter object, check if values are equal
+        // if values are equal result remains true, if not returns false
+        if (otherObject instanceof Counter other)
         {
-            // YOUR CODE GOES HERE
+            result = counter == other.counter
+                     && minValue == other.minValue
+                     && maxValue == other.maxValue
+                     && rolledOver == other.rolledOver;
         }
         return result;
     }
@@ -54,7 +86,14 @@ public class Counter
      */
     public void increase()
     {
-        // ADD CODE TO INCREASE THE VALUE OF THE COUNTER
+        counter++;
+        if (counter > maxValue) {
+            counter = minValue;
+            rolledOver = true;
+        } else {
+            rolledOver = false;
+        }
+        
     }
  
  
@@ -63,7 +102,13 @@ public class Counter
      */
     public void decrease()
     {
-        // ADD CODE TO INCREASE THE VALUE OF THE COUNTER
+        counter--;
+        if (counter < minValue) {
+            counter = maxValue;
+            rolledOver = true;
+        } else {
+            rolledOver = false;
+        }
     }
     
     /**
@@ -73,9 +118,7 @@ public class Counter
      */
     public int value()
     {
-        // CHANGE THE RETURN TO GIVE THE CURRENT VALUE OF THE COUNTER
-        return -50;
-		
+        return counter;
     }
     
     
@@ -87,8 +130,7 @@ public class Counter
      */
     public boolean rolledOver()
     {
-        // CHANGE THE RETURN TO THE ROLLOVER STATUS OF THE COUNTER
-        return true;
+        return rolledOver;
     }
     
     /**
@@ -99,8 +141,10 @@ public class Counter
      */
     public String toString()
     {
-        // CHANGE THE RETURN TO A DESCRIPTION OF THE COUNTER
-        return "";		
+        return "Counter has a value of: " + counter + "\n"
+         + "Min value is: " + minValue
+         + "\nMax value is: " + maxValue
+         + "\nRolled over: " + rolledOver;	
     }
  
 }
