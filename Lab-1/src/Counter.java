@@ -9,10 +9,12 @@
 public class Counter
 {
     // PUT PRIVATE DATA FIELDS HERE
+    
     private final int minValue;
     private final int maxValue;
 
     private int counter;
+
     private boolean rolledOver;
     /**
      * The default constructor for objects of class Counter.  Minimum is 0 and the maximum
@@ -86,7 +88,12 @@ public class Counter
      */
     public void increase()
     {
+
+        // increment counter
         counter++;
+
+        // if counter becomes greater than the max value
+        // rollover the counter back to min
         if (counter > maxValue) {
             counter = minValue;
             rolledOver = true;
@@ -102,7 +109,11 @@ public class Counter
      */
     public void decrease()
     {
+        //decrement counter
         counter--;
+        
+        // if counter becomes less than min value
+        // rollover the counter back to max
         if (counter < minValue) {
             counter = maxValue;
             rolledOver = true;
@@ -118,6 +129,7 @@ public class Counter
      */
     public int value()
     {
+        // returns the value of counter
         return counter;
     }
     
@@ -130,6 +142,7 @@ public class Counter
      */
     public boolean rolledOver()
     {
+        // returns true or false if the program has been rolled over
         return rolledOver;
     }
     
@@ -141,6 +154,9 @@ public class Counter
      */
     public String toString()
     {
+
+        // returns a string of useful information
+        // counter , minvalue, maxvalue and rolledover
         return "Counter has a value of: " + counter + "\n"
          + "Min value is: " + minValue
          + "\nMax value is: " + maxValue

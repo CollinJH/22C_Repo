@@ -214,6 +214,8 @@ public class Rational
         // finding the greatest common factor of the numerator/denominator
         int result = gcd(Math.abs(numerator),Math.abs(denominator));
 
+        // simply the fraction by the gcf
+
         numerator /= result;
         denominator /= result;
     }
