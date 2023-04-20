@@ -33,6 +33,7 @@ public class Rational
     {
         // Pre-Condition: check if the denominator is non-zero
         // if the denominator is non-zero throw error
+
         if (d == 0) {
             throw new ZeroDenominatorException("Denominator is set to 0, not a rational number ");
         }
