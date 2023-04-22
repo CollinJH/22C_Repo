@@ -3,7 +3,8 @@
 // Professor Mirsaeid Abolghasemi
 // 04.21.2023
 
-public class ClassNode {
+private class Node 
+{
 
 	private T data; // entry to list 
 	private Node next; // link to next node
@@ -15,30 +16,37 @@ public class ClassNode {
 	} 
 
 	// alternate constructor
-	private Node(T dataPortion, Node nextNode) {
+	private Node(T dataPortion, Node nextNode) 
+	{
 		data = dataPortion;
 		next = nextNode;
 	} 
 
 	// data getter
-	private T getData() {
+	private T getData() 
+	{
 		return data;
 	}
 
 	// data setter
-	private void setData(T newData) {
+	private void setData(T newData) 
+	{
 		data = newData;
 	}
 
 	// node getter
-	private Node getNextNode() {
+	private Node getNextNode() 
+	{
 		return next;
 	}
 
-	// noder setter
-	private void setNextNode(Node nextNode) {
+	// node setter
+	private void setNextNode(Node nextNode) 
+	{
 		next = nextNode;
 	}
+	
+}
 	
 }
 
