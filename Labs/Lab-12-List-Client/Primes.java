@@ -50,34 +50,38 @@ public class Primes
         primes.add(prime);
 
         // first round of composites using 2
+        System.out.printf("%s%s", prime, " is prime\n");
         getComposites(canidates, composites, prime);
+        System.out.printf("%s%s%s","Canidates: ", canidates, " \n");
+        System.out.printf("%s%s%s","Composites: ", composites, " \n");
+        System.out.printf("%s%s%s","Primes: ", primes, " \n");
         
         // until canidate list is empty
         // check if 1st value in canidate list is prime
         // if it is do a round of checking composites
-        
+
         while(canidates.getLength() != 0) {
             // get next prime value
             for (int i = 1; i <= canidates.getLength(); ++i) {
                 if (isPrime(canidates.getEntry(i)) == true) {
                     prime = canidates.getEntry(i);
                     primes.add(canidates.getEntry(i));
+
+                    System.out.printf("%s%s", prime, " is prime\n");
+
                     canidates.remove(i);
                     getComposites(canidates, composites, prime);
                     --i;
                 } else {
                     continue;
                 }
+
+                System.out.printf("%s%s%s","Canidates: ", canidates, " \n");
+                System.out.printf("%s%s%s","Composites: ", composites, " \n");
+                System.out.printf("%s%s%s","Primes: ", primes, " \n");
             }
         }
         
-
-        System.out.printf("%s%s%s","Canidates: ", canidates, " \n");
-        System.out.printf("%s%s%s","Composites: ", composites, " \n");
-        System.out.printf("%s%s%s","Primes: ", primes, " \n");
-
-            
-        System.out.println(primes);
     
     }
 
