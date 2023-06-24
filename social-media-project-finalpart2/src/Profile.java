@@ -1,5 +1,9 @@
+// Collin Hargreaves
+// CIS 22C
+// Professor Mirsaeid Abolghasemi
+// 06/23/2023
+
 import java.util.Iterator;
-import java.util.Arrays;
 import util.*;
 
 public class Profile {

@@ -1,3 +1,12 @@
+// Collin Hargreaves
+// CIS 22C
+// Professor Mirsaeid Abolghasemi
+// 06/23/2023
+
+Final Project Part 1
+
+Incorporating the Graph Data Structure into our previous social network project.
+
 1.What data structures did you use in your code and why?
 I used an undirected graph, this is because, typically in a social network if you add someone to a friends list, it means they added you back.
 This type of behavior is easily implemented with an undirected graph.
@@ -29,8 +38,41 @@ its a way to allocate nodes to a tree so that it is perfectly balanced
 essentially a self balanced binary tree, maintains a property called the AVL balance factor for each node
 this allows the tree to remain balanced at all times
 7. What is the similarity and difference between an AVL and a BST?
+AVL trees specifically maintain balance for each node using a balance factor
+this is the difference between the heigh of the left and right subtree
+AVL trees also use operations to maintain balance after insertion and deletion.
+BST will not perform automatic balancing
+AVL tree operations have a guarenteed worst case time of O(log n) due to the balancing property
+BST tree operations have an average worst time of O(log n) but can end up O(n) for the worst
 8. What is a Heap tree?
+This is essentially a binary heap tree, which satisfies the heap property
+for every node in a tree, the value of the node is either greater than or equal to in a max heap
+or less than or equal to in a min heap
 9. What is the difference between Min Heap and Max Heap?
+In in a max heap the value of each node is greater than or equal to the value of its children
+in a min heap the value of each node is less than or equal to the value of its children
 10. What the differences between BFS(Breadth-first search) and DFS(Depth-First Search)?
+Breadth-first search explores all neighboring nodes at current depth level before movin to the next
+Depth-first search will explore as far as possible before backtracking up
 11. What is the difference between the weighted and unweighted graphs? Explain with examples.
+Unweighted Graphs
+    each edge is considered to have a equal weight
+    edges of unweighted graphs are represented by simple connections
+    consider a social network where each person is a node or vertex and connections between each person represents friendships
+    the edges between each person would only consider if they are in facts friends or not, with no weight
+    there would be no additional attribute like closeness
+Weighted Graphs
+    each edge is associated with a weight
+    each weight can represent a different factor
+    used for relationships with various degrees
+    consider a transportation network, the weighted edges could refer to the distance to each individual city
 12. What is the difference between directed graphs and undirected graphs? Explain with examples.
+Directed Graphs
+    Edges do not have a specific direction to them
+    represented by simple lines or connections
+    undirected graphs are used to represent symetric relationships, like adding friends on a social network
+Directed Graphs
+    Edges represent a way one street
+    relationship depends on the direction of traversal
+    a webpage network that consists of nodes and the edges can represent hyperlinks between pages
+    the edges would represent the direction of those hyperlinks
